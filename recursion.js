@@ -1,28 +1,37 @@
-function flatten(arrayOfarray){
-
-    let arr = [];
-
-    if(arrayOfarray.length === 0){
-        return [];
-    }
-
-    if( Array.isArray(arrayOfarray[0])){
-
-        arr.push(...arrayOfarray[0]);
-        return arr.concat(flatten(arrayOfarray.splice(1)));
+function merge(array, array2){
+    
+    let i = 0;
+    let j = 0;
+    let mergeArray = [];
+    
+    while(i < array.length && j < array2.length){
         
-    }else{
-
-        arr.push(arrayOfarray[0]);
-        return arr.concat(flatten(arrayOfarray.splice(1)));
-
+        if(array[i] < array2[j]){
+            mergeArray.push(array[i]);
+            i++;
+        }else{
+            mergeArray.push(array2[j])
+            j++;
+        }
+        
     }
 
-    // add whatever parameters you deem necessary - good luck!
-  }
-  
-  console.log(flatten([1,2,3,[4,5]]));
-  console.log(flatten([1, 2, 3, [4, 5] ])); // [1, 2, 3, 4, 5]
-  console.log(flatten([1, [2, [3, 4], [[5]]]])) // [1, 2, 3, 4, 5]
-  console.log(flatten([[1],[2],[3]])) // [1,2,3]
-  // flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]) // [1,2,3
+    while(i<array.length){
+        mergeArray.push(array[i]);
+        i++;
+    }
+
+    while(j<array2.length){
+        mergeArray.push(array2[j]);
+        j++;
+    }
+
+    console.log(i,j)
+
+    return mergeArray;
+
+}
+
+
+
+console.log(merge([1,10,50], [2,14,99,100])) // 
