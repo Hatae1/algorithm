@@ -22,7 +22,7 @@ function validAnagram(str1, str2){
         }
 
         if(strCompareArray[key] !== strArray[key]){
-            console.log(strCompareArray[key]);
+
             return false;
         }
     }
